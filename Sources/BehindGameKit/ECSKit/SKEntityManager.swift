@@ -9,7 +9,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-class SKEntityManager {
+public class SKEntityManager {
     
     /// Set of All entities in game, this should the only place of the entity is strong reference
     private(set) var entities = Set<GKEntity>()
