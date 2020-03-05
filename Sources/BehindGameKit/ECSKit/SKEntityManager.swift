@@ -26,7 +26,7 @@ public class SKEntityManager {
         return [ ]
     }()
 
-    init(_ scene: SKScene) {
+    public init(_ scene: SKScene) {
         self.scene = scene
     }
     
