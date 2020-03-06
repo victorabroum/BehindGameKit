@@ -4,7 +4,7 @@ A description of this package.
 
 ## Game Center
 
-If you need helper for connection with game center you can go [here](Sources/BehindGameKit/GameKit++).
+If you need helper for connection with game center or gaming debug you can go [here](Sources/BehindGameKit/GameKit++).
 
 ## ECS architecture
 
