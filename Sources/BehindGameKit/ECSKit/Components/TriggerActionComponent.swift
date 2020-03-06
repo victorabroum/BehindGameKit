@@ -28,25 +28,21 @@ public class TriggerActionComponent: GKComponent {
     // Component System
     override public func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
-        if (CACurrentMediaTime() - self.lastTimeUpdated > 2) {
+        if (CACurrentMediaTime() - self.lastTimeUpdated > waitTime) {
             self.lastTimeUpdated = CACurrentMediaTime()
-            if let action = action {
-                action()
+            if isRecursive {
+                action?()
             }
         }
     }
     
     public func triggerAction(waitTime timeInterval: TimeInterval = 2, isRecursive recursive: Bool = false, action: (() -> Void)? = nil) {
-        action?()
         self.action = action
         self.waitTime = timeInterval
         self.isRecursive = recursive
-//        if recursive {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
-//                self.triggerAction(waitTime: timeInterval, isRecursive: recursive, action: action)
-//            }
-//        }
-        
+        if !recursive {
+            action?()
+        }
     }
 }
 
