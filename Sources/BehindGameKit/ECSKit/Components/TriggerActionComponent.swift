@@ -40,9 +40,14 @@ public class TriggerActionComponent: GKComponent {
         self.action = action
         self.waitTime = timeInterval
         self.isRecursive = recursive
+        self.lastTimeUpdated = 0
         if !recursive {
             action?()
         }
+    }
+    
+    public func changeWaitTime(_ timeInterval: TimeInterval) {
+        self.waitTime = timeInterval
     }
 }
 
