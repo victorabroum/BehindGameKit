@@ -22,6 +22,21 @@ public class GameCenter {
         self.leaderBoardID = id
     }
     
+    public func presentGCLeaderboard(from viewController: GKGameCenterControllerDelegate,
+                                     withLeaderBoardID id: String? = nil) {
+        let gcVC = GKGameCenterViewController()
+        gcVC.gameCenterDelegate = viewController
+        gcVC.viewState = .leaderboards
+        if id != nil {
+            gcVC.leaderboardIdentifier = id!
+        } else {
+            gcVC.leaderboardIdentifier = self.leaderBoardID
+        }
+        if let vc = viewController as? UIViewController {
+            vc.present(gcVC, animated: true, completion: nil)
+        }
+    }
+    
     public func authenticateLocalPlayer(presentingViewController vc: UIViewController) {
         GKLocalPlayer.local.authenticateHandler = { [weak self] (gameViewController, error) in
             guard error == nil else {
