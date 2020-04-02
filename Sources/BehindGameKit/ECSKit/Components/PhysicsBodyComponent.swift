@@ -31,4 +31,8 @@ public class PhysicsBodyComponent: GKComponent {
     override public func didAddToEntity() {
         entity?.component(ofType: GKSKNodeComponent.self)?.node.physicsBody = self.physicsBody
     }
+    
+    public override func willRemoveFromEntity() {
+        self.entity?.component(ofType: GKSKNodeComponent.self)?.node.physicsBody = nil
+    }
 }
