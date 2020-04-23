@@ -107,4 +107,8 @@ public class SKEntityManager {
         }
         toRemove.removeAll()
     }
+    
+    public func getAllEntities() -> Set<GKEntity> {
+        return self.entities
+    }
 }
