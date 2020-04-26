@@ -32,11 +32,19 @@ public class GameCenter {
         } else {
             gcVC.leaderboardIdentifier = self.leaderBoardID
         }
+        
+        #if os(iOS)
         if let vc = viewController as? UIViewController {
             vc.present(gcVC, animated: true, completion: nil)
         }
+        #elseif os(OSX)
+        if let vc = viewController as? NSViewController {
+            vc.presentAsModalWindow(gcVC)
+        }
+        #endif
     }
     
+    #if os(iOS)
     public func authenticateLocalPlayer(presentingViewController vc: UIViewController) {
         GKLocalPlayer.local.authenticateHandler = { [weak self] (gameViewController, error) in
             guard error == nil else {
@@ -49,6 +57,9 @@ public class GameCenter {
             self?.isGameCenterEnabled = GKLocalPlayer.local.isAuthenticated
         }
     }
+    #elseif os(OSX)
+    
+    #endif
     
     public func updateScore(onLeaderBoardID id: String? = nil, newScore value: Int) {
         if let highScore = self.playerHighScore {

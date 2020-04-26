@@ -38,8 +38,16 @@ public class SKButtonNode: SKNode {
         self.isUserInteractionEnabled = true
     }
     
+    
+    #if os(iOS)
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.delegate?()
     }
+    #elseif os(OSX)
+    public override func touchesBegan(with event: NSEvent) {
+        self.delegate?()
+    }
+    #endif
+    
     
 }

@@ -8,6 +8,7 @@
 import Foundation
 import GameplayKit
 
+@available(OSX 10.12, *)
 extension Notification {
     public func getEntities() -> (GKEntity, GKEntity)? {
         guard let bodyA = self.userInfo?["bodyA"] as? SKPhysicsBody,

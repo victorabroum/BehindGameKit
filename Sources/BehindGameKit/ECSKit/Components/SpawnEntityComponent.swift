@@ -9,6 +9,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
+@available(OSX 10.12, *)
 public class SpawnEntityComponent: GKComponent {
     
     public var entitySpawned: GKEntity?
