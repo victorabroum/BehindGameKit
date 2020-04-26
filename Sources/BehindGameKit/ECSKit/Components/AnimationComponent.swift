@@ -36,7 +36,14 @@ public class AnimationComponent: GKComponent {
         super.update(deltaTime: seconds)
     }
     
-    public func runAnimation(onNode node: SKNode, action: SKAction) {
-        node.run(action)
+    public func runAnimation(onNode node: SKNode? = nil, action: SKAction, withKey: String = "") {
+        
+        var runOnNode: SKNode? = node
+        
+        if node == nil {
+            runOnNode = self.entity?.component(ofType: GKSKNodeComponent.self)?.node
+        }
+        
+        runOnNode?.run(action, withKey: withKey)
     }
 }

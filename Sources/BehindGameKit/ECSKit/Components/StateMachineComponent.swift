@@ -13,12 +13,12 @@ public class StateMachineComponent: GKComponent {
     
     public var stateMachine: GKStateMachine
     
-    init(stateMachine: GKStateMachine) {
+    public init(stateMachine: GKStateMachine) {
         self.stateMachine = stateMachine
         super.init()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         self.stateMachine = GKStateMachine(states: [])
         super.init(coder: coder)
     }
