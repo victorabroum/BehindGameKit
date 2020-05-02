@@ -44,7 +44,7 @@ public class SKButtonNode: SKNode {
         self.delegate?()
     }
     #elseif os(OSX)
-    public override func touchesBegan(with event: NSEvent) {
+    public override func mouseDown(with event: NSEvent) {
         self.delegate?()
     }
     #endif
