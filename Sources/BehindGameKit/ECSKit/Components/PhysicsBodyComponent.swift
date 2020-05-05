@@ -9,7 +9,6 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-@available(OSX 10.12, *)
 public class PhysicsBodyComponent: GKComponent {
     
     var physicsBody: SKPhysicsBody

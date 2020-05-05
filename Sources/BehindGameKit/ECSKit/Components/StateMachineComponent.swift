@@ -8,7 +8,6 @@
 import Foundation
 import GameplayKit
 
-@available(OSX 10.12, *)
 public class StateMachineComponent: GKComponent {
     
     public var stateMachine: GKStateMachine

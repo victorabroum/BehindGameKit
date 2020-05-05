@@ -9,7 +9,6 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-@available(OSX 10.12, *)
 public class AnimationComponent: GKComponent {
     override public init() {
         super.init()

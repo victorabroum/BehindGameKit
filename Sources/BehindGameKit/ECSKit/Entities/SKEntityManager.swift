@@ -9,7 +9,6 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-@available(OSX 10.12, *)
 public class SKEntityManager {
     
     /// Set of All entities in game, this should the only place of the entity is strong reference

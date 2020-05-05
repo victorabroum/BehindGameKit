@@ -8,9 +8,8 @@
 import Foundation
 import GameplayKit
 
-@available(OSX 10.12, *)
-extension GKEntity {
-    public func removeNodes() {
+public extension GKEntity {
+    func removeNodes() {
         self.component(ofType: GKSKNodeComponent.self)?.node.removeFromParent()
     }
 }
