@@ -1,5 +1,5 @@
 //
-//  Notification.Name+Extensions.swift
+//  Notification+Extensions.swift
 //  
 //
 //  Created by Victor Vasconcelos on 05/03/20.
