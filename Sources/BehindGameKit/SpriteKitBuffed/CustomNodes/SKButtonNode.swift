@@ -41,6 +41,7 @@ public class SKButtonNode: SKNode {
     
     #if os(iOS)
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         self.delegate?()
     }
     #elseif os(OSX)
