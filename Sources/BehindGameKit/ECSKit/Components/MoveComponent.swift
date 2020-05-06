@@ -64,4 +64,9 @@ public class MoveComponent: GKComponent, MoveProtocol {
         }
     }
     
+    public override func willRemoveFromEntity() {
+        velocity = .zero
+        node?.physicsBody?.velocity = .zero
+    }
+    
 }
