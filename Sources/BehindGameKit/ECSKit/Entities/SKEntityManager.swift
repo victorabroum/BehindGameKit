@@ -28,6 +28,7 @@ public class SKEntityManager {
 
     public init(_ scene: SKScene) {
         self.scene = scene
+        self.addListners()
     }
     
     /// To Add an Entity
@@ -110,5 +111,26 @@ public class SKEntityManager {
     
     public func getAllEntities() -> Set<GKEntity> {
         return self.entities
+    }
+    
+    public func addListners() {
+        NotificationCenter.default.addObserver(self, selector: #selector(removeEntity(_:)), name: .removeEntityFromScene, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(addEntity(_:)), name: .addEntityNotification, object: nil)
+    }
+    
+    @objc private func removeEntity(_ notification: Notification) {
+        guard let entity = notification.userInfo?["entity"] as? GKEntity else { return }
+        self.remove(entity)
+    }
+    
+    @objc private func addEntity(_ notification: Notification) {
+        guard let entity = notification.userInfo?["entity"] as? GKEntity else { return }
+        
+        if let parent = notification.userInfo?["parent"] as? GKEntity {
+            self.add(entity, parentEntity: parent)
+        } else {
+            self.add(entity)
+        }
     }
 }
