@@ -17,7 +17,7 @@ public extension UInt32 {
     static let wall = UInt32.base << 4
     static let trigger = UInt32.base << 6
     
-    static let allMasks: [UInt32] = [
+    static var allMasks: [UInt32] = [
         .player,
         .enemy,
         .items,
