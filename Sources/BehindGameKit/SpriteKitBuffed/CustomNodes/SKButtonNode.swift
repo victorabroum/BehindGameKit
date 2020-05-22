@@ -57,6 +57,21 @@ public class SKButtonNode: SKNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        if let bg = self.childNode(withName: "button bg") as? SKSpriteNode {
+            bg.texture?.filteringMode = .nearest
+            self.buttonBackground = bg
+            self.unClickedTexture = bg.texture
+            
+            if let clickedTextureName = self.userData?["clickedTexture"] as? String {
+                self.clickedTexture = .init(imageNamed: clickedTextureName)
+            }
+        }
+        
+        if let label = self.childNode(withName: "label") as? SKLabelNode {
+            self.buttonLabel = label
+        }
+        
         self.setupButtonNode()
     }
     
