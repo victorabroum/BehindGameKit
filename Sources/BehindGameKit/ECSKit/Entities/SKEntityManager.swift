@@ -52,6 +52,12 @@ public class SKEntityManager {
         }
     }
     
+    public func add(_ entities: [GKEntity]) {
+        for entity in entities {
+            self.add(entity)
+        }
+    }
+    
     /// To Add an Entity
     public func addGet(_ entity: GKEntity, parentEntity: GKEntity? = nil) -> GKEntity {
         
