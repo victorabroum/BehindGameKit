@@ -17,6 +17,8 @@ public class SKButtonNode: SKNode {
     public var clickedTexture: SKTexture?
     public var unClickedTexture: SKTexture?
     
+    public var hasHapticFeedback: Bool = false
+    
     private var isClicked: Bool = false {
         didSet {
             if isClicked {
@@ -82,7 +84,9 @@ public class SKButtonNode: SKNode {
     
     #if os(iOS)
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        if hasHapticFeedback {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        }
         self.delegate?()
         isClicked = true
     }
