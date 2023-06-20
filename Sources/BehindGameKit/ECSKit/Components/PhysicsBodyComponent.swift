@@ -9,7 +9,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-public class PhysicsBodyComponent: GKComponent {
+public class SKPhysicsBodyComponent: GKComponent {
     
     var physicsBody: SKPhysicsBody
     

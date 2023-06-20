@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-public class GameDebug {
+public class SKGameDebug {
     public static func viewDebug(_ view: SKView, swithOn: Bool) {
         view.showsFPS = swithOn
         view.showsNodeCount = swithOn

@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  SKGameScene.swift
 //  
 //
 //  Created by Victor Vasconcelos on 06/05/20.
@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-public class GameScene: SKScene {
+public class SKGameScene: SKScene {
     
     public var entityManager: SKEntityManager?
     private var lastUpdateTime : TimeInterval = 0
@@ -16,8 +16,6 @@ public class GameScene: SKScene {
     public override func sceneDidLoad() {
         self.lastUpdateTime = 0
         self.entityManager = SKEntityManager(self)
-        
-        self.physicsWorld.contactDelegate = self
     }
     
     override public func update(_ currentTime: TimeInterval) {

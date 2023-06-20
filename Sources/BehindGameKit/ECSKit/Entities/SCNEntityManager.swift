@@ -1,15 +1,15 @@
 //
-//  SKEntityManager.swift
+//  SCNEntityManager.swift
 //  
 //
-//  Created by Victor Vasconcelos on 05/03/20.
+//  Created by Victor Vasconcelos on 20/06/23.
 //
 
 import Foundation
 import GameplayKit
-import SpriteKit
+import SceneKit
 
-public class SKEntityManager {
+public class SCNEntityManager {
     
     /// Set of All entities in game, this should the only place of the entity is strong reference
     private(set) var entities = Set<GKEntity>()
@@ -18,7 +18,7 @@ public class SKEntityManager {
     private var toRemove = Set<GKEntity> ()
     
     /// Instance for scene where the entity manager will act
-    private weak var scene: SKScene?
+    private weak var scene: SCNScene?
     
     /// All components systems
     // Insert any entity that needs updating here as a GKComponentSystem
@@ -26,7 +26,7 @@ public class SKEntityManager {
         return [ ]
     }()
 
-    public init(_ scene: SKScene) {
+    public init(_ scene: SCNScene) {
         self.scene = scene
     }
     
@@ -41,12 +41,12 @@ public class SKEntityManager {
         }
         
         // If has SpriteComponent, so it's rendered on Scene
-        if let node = entity.component(ofType: GKSKNodeComponent.self)?.node, node.parent == nil {
+        if let node = entity.component(ofType: GKSCNNodeComponent.self)?.node, node.parent == nil {
             
-            if let parentNode = parentEntity?.component(ofType: GKSKNodeComponent.self)?.node {
-                parentNode.addChild(node)
+            if let parentNode = parentEntity?.component(ofType: GKSCNNodeComponent.self)?.node {
+                parentNode.addChildNode(node)
             } else if let scene = scene {
-                scene.addChild(node)
+                scene.rootNode.addChildNode(node)
             }
         }
     }
@@ -68,12 +68,12 @@ public class SKEntityManager {
         }
         
         // If has SpriteComponent, so it's rendered on Scene
-        if let node = entity.component(ofType: GKSKNodeComponent.self)?.node, node.parent == nil {
+        if let node = entity.component(ofType: GKSCNNodeComponent.self)?.node, node.parent == nil {
             
-            if let parentNode = parentEntity?.component(ofType: GKSKNodeComponent.self)?.node {
-                parentNode.addChild(node)
+            if let parentNode = parentEntity?.component(ofType: GKSCNNodeComponent.self)?.node {
+                parentNode.addChildNode(node)
             } else if let scene = scene {
-                scene.addChild(node)
+                scene.rootNode.addChildNode(node)
             }
         }
         
