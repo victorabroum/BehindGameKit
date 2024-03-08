@@ -10,12 +10,11 @@ import SpriteKit
 
 open class SKGameScene: SKScene {
     
-    public var entityManager: SKEntityManager?
     public var lastUpdateTime : TimeInterval = 0
     
     open override func sceneDidLoad() {
         self.lastUpdateTime = 0
-        self.entityManager = SKEntityManager(self)
+        SKEntityManager.shared.start(inScene: self)
     }
     
     open override func update(_ currentTime: TimeInterval) {
@@ -30,7 +29,7 @@ open class SKGameScene: SKScene {
         let dt = currentTime - self.lastUpdateTime
         
         // Update entities
-        self.entityManager?.update(dt)
+        SKEntityManager.shared.update(dt)
         
         self.lastUpdateTime = currentTime
     }

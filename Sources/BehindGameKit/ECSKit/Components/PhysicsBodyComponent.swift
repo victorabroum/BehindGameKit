@@ -11,7 +11,7 @@ import SpriteKit
 
 public class SKPhysicsBodyComponent: GKComponent {
     
-    var physicsBody: SKPhysicsBody
+    public var physicsBody: SKPhysicsBody
     
     public init(physicsBody: SKPhysicsBody) {
         self.physicsBody = physicsBody

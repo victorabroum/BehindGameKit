@@ -25,8 +25,12 @@ public class SKEntityManager {
     lazy private var componentSystems: [GKComponentSystem] = {
         return [ ]
     }()
+    
+    public static var shared = SKEntityManager()
 
-    public init(_ scene: SKScene) {
+    private init() { }
+    
+    public func start(inScene scene: SKScene) {
         self.scene = scene
     }
     
