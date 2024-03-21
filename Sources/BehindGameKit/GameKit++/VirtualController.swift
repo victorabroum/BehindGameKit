@@ -12,24 +12,55 @@ import Combine
 @available(iOS 13.0, *)
 public class VirtualController: ObservableObject {
     
-    private var analogNode: AnalogNode
+    private var analogNode: BKAnalogNode
     
     public init(scene: SKScene, analogRadius: CGFloat = 20) {
-        analogNode = AnalogNode(radius: analogRadius)
-        scene.addChild(analogNode)
+        analogNode = BKAnalogNode(radius: analogRadius)
         
-        setup()
+        if (scene.camera != nil) {
+            scene.camera?.addChild(analogNode)
+        } else {        
+            scene.addChild(analogNode)
+        }
+        
+        setup(scene: scene)
     }
     
-    private func setup() {
+    private func setup(scene: SKScene) {
         analogNode.zPosition = 999
+        
+        // Position
+        guard let sceneSize = scene.view?.frame.size else { return }
+        let analogSize = analogNode.calculateAccumulatedFrame().size
+        analogNode.position.x = -sceneSize.width/2 + analogSize.width + sceneSize.width/8
+        analogNode.position.y = -sceneSize.height/2 + analogSize.height + sceneSize.height/8
     }
     
     public func createAnalogObserver(delegate: @escaping (CGPoint) -> Void) -> AnyCancellable {
         return analogNode.$direction.sink(receiveValue: delegate)
     }
     
-    public func setEnable(value: Bool) {
-        analogNode.isHidden = !value
+    public func setAnalogVisible(value: Bool, withDuration duration: TimeInterval = 0) {
+        analogNode.setVisible(value: value, withDuration: duration)
+    }
+    
+    public func changePosition(_ position: CGPoint) {
+        analogNode.position = position
+    }
+    
+    public func getAnalogSize() -> CGSize {
+        return analogNode.calculateAccumulatedFrame().size
+    }
+    
+    public func touchBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        analogNode.touchesBegan(touches, with: event)
+    }
+    
+    public func touchMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        analogNode.touchesMoved(touches, with: event)
+    }
+    
+    public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        analogNode.touchesEnded(touches, with: event)
     }
 }

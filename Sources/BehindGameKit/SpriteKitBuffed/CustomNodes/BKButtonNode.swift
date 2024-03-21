@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-public class SKButtonNode: SKNode {
+public class BKButtonNode: SKNode {
     
     public var buttonBackground: SKSpriteNode?
     public var buttonLabel: SKLabelNode?

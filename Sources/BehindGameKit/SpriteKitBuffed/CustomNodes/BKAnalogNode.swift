@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 @available(iOS 13.0, *)
-public class AnalogNode: SKNode, ObservableObject {
+public class BKAnalogNode: SKNode, ObservableObject {
     
     var background: SKShapeNode
     var knob: SKShapeNode
@@ -46,6 +46,8 @@ public class AnalogNode: SKNode, ObservableObject {
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
         moveKnob(location: location)
+        self.removeAction(forKey: "setEnable")
+        self.run(.fadeAlpha(to: 1, duration: 0))
     }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -55,10 +57,12 @@ public class AnalogNode: SKNode, ObservableObject {
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         moveKnob(location: .zero)
+        setVisible(value: false, withDuration: 0.6)
     }
     
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         moveKnob(location: .zero)
+        setVisible(value: false, withDuration: 0.6)
     }
     
     private func moveKnob(location: CGPoint) {
@@ -81,4 +85,8 @@ public class AnalogNode: SKNode, ObservableObject {
 
     }
     
+    public func setVisible(value: Bool, withDuration duration: TimeInterval = 0) {
+        self.removeAllActions()
+        self.run(.fadeAlpha(to: value ? 1 : 0, duration: duration), withKey: "setEnable")
+    }
 }

@@ -25,7 +25,7 @@ public class ControlableComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setupController(inputHandler: InputHandler) {
+    public func setupController(inputHandler: InputHandler, virtualController: VirtualController?) {
         subscriptions.insert(inputHandler.$directionAxis.sink(receiveValue: { [weak self] direction in
             self?.delegate.handleMovement(direction: direction)
         }))
@@ -34,6 +34,11 @@ public class ControlableComponent: GKComponent {
             if isPressed {
                 self?.delegate.handleButtonAPressed()
             }
+        }))
+        
+        guard let virtualController else { return }
+        subscriptions.insert(virtualController.createAnalogObserver(delegate: { [weak self] direction in
+            self?.delegate.handleMovement(direction: direction)
         }))
     }
     
