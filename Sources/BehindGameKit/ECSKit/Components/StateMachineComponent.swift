@@ -22,4 +22,8 @@ public class StateMachineComponent: GKComponent {
         super.init(coder: coder)
     }
     
+    public override func update(deltaTime seconds: TimeInterval) {
+        stateMachine.update(deltaTime: seconds)
+    }
+    
 }

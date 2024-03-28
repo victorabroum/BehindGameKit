@@ -70,6 +70,17 @@ open class SKGameScene: SKScene {
     }
     
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let camera, 
+                let location = touches.first?.location(in: camera),
+              location.x <= 0 else { return }
+        virtualController?.touchesEnded(touches, with: event)
+        virtualController?.setAnalogVisible(value: false, withDuration: 0.6)
+    }
+    
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let camera,
+                let location = touches.first?.location(in: camera),
+              location.x <= 0 else { return }
         virtualController?.touchesEnded(touches, with: event)
         virtualController?.setAnalogVisible(value: false, withDuration: 0.6)
     }

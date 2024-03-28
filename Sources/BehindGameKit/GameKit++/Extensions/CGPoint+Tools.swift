@@ -29,4 +29,14 @@ public extension CGPoint {
         
         return CGPoint(x: normalizedX, y: normalizedY)
     }
+    
+    public func magnitude() -> CGFloat {
+        return sqrt(x * x + y * y)
+    }
+    
+    public static func randomPoint(_ range: ClosedRange<CGFloat>) -> CGPoint {
+        return .init(
+            x: .random(in: range),
+            y: .random(in: range))
+    }
 }
