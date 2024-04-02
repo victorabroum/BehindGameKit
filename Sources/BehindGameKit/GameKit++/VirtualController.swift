@@ -63,4 +63,8 @@ public class VirtualController: ObservableObject {
     public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         analogNode.touchesEnded(touches, with: event)
     }
+    
+    public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        analogNode.touchesCancelled(touches, with: event)
+    }
 }

@@ -7,4 +7,9 @@ public extension SKSpriteNode {
         self.init(imageNamed: imageNamed)
         self.texture?.filteringMode = filteringMode
     }
+    
+    public convenience init(image: UIImage, filteringMode: SKTextureFilteringMode) {
+        self.init(texture: .init(image: image))
+        self.texture?.filteringMode = filteringMode
+    }
 }

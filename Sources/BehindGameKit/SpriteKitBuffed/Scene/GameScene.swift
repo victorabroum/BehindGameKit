@@ -81,7 +81,7 @@ open class SKGameScene: SKScene {
         guard let camera,
                 let location = touches.first?.location(in: camera),
               location.x <= 0 else { return }
-        virtualController?.touchesEnded(touches, with: event)
+        virtualController?.touchesCancelled(touches, with: event)
         virtualController?.setAnalogVisible(value: false, withDuration: 0.6)
     }
 }
