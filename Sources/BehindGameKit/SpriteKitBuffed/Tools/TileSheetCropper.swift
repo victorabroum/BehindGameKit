@@ -44,8 +44,6 @@ public class TileSheetCropper {
             let spriteWidth = image.size.width / CGFloat(columns)
             let spriteHeight = image.size.height / CGFloat(rows)
             
-            UIGraphicsBeginImageContextWithOptions(CGSize(width: spriteWidth, height: spriteHeight), false, 0.0)
-            
             for row in 0..<rows {
                 for col in 0..<columns {
                     let xOffset = CGFloat(col) * spriteWidth
@@ -62,8 +60,6 @@ public class TileSheetCropper {
                     }
                 }
             }
-            
-            UIGraphicsEndImageContext()
             
             return sprites
 #endif

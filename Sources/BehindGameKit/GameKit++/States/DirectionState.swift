@@ -3,6 +3,17 @@ import Foundation
 public enum DirectionState {
     case north, northeast, east, southeast, south, southwest, west, northwest, none
     
+    public static var allCases: [DirectionState] = [
+        .north,
+        .northeast,
+        .east,
+        .southeast,
+        .south,
+        .southwest,
+        .west,
+        .northwest,
+    ]
+    
     public var animationKey: String {
         switch self {
         case .north:
