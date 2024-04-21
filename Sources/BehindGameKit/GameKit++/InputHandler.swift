@@ -8,6 +8,7 @@
 import Foundation
 import GameKit
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public class InputHandler: ObservableObject {
     

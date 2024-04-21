@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 import Combine
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 open class SKGameScene: SKScene {
     
@@ -51,6 +52,7 @@ open class SKGameScene: SKScene {
         self.lastUpdateTime = currentTime
     }
     
+    #if os(ios)
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let camera, let location = touches.first?.location(in: camera) else { return }
         
@@ -84,4 +86,5 @@ open class SKGameScene: SKScene {
         virtualController?.touchesCancelled(touches, with: event)
         virtualController?.setAnalogVisible(value: false, withDuration: 0.6)
     }
+    #endif
 }

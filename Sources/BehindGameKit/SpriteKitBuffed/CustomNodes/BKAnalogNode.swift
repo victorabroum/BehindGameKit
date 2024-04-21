@@ -8,6 +8,7 @@
 import Foundation
 import SpriteKit
 
+@available(macOS 10.15, *)
 @available(iOS 13.0, *)
 public class BKAnalogNode: SKNode, ObservableObject {
     
@@ -43,6 +44,7 @@ public class BKAnalogNode: SKNode, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
+    #if os(ios)
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
         moveKnob(location: location)
@@ -64,6 +66,7 @@ public class BKAnalogNode: SKNode, ObservableObject {
         moveKnob(location: .zero)
         setVisible(value: false, withDuration: 0.6)
     }
+    #endif
     
     private func moveKnob(location: CGPoint) {
         

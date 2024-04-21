@@ -1,4 +1,5 @@
 import Foundation
+import SpriteKit
 
 public extension CGPoint {
     func distance(to point: CGPoint) -> CGFloat {
@@ -38,5 +39,9 @@ public extension CGPoint {
         return .init(
             x: .random(in: range),
             y: .random(in: range))
+    }
+    
+    public func toVecto2() -> vector_float2 {
+        return .init(Float(x), Float(y))
     }
 }

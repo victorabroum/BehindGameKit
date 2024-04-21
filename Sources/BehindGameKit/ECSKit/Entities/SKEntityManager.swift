@@ -121,4 +121,30 @@ public class SKEntityManager {
     public func getAllEntities() -> Set<GKEntity> {
         return self.entities
     }
+    
+    public func getEntities(ofType type: GKComponent.Type) -> Set<GKEntity> {
+        return entities.filter { $0.component(ofType: type) != nil }
+    }
+    
+    public func getEntitiesWithComponent<T>(ofType type: T.Type) -> [T] where T : GKComponent {
+        var result: [T] = []
+        
+        for entity in entities {
+            if let comp  = entity.component(ofType: type.self) {
+                result.append(comp)
+            }
+        }
+        
+        return result
+    }
+    
+    public func getFirstEntityWithComponent<ComponentType>(offType type: ComponentType.Type) -> ComponentType? where ComponentType: GKComponent {
+        let entity = entities.first(where: {$0.component(ofType: type.self) != nil})
+        return entity?.component(ofType: type.self)
+    }
+    
+    public func getFirstEntity<EntityType>(ofType: EntityType.Type) -> EntityType? where EntityType : GKEntity {
+        
+        return entities.first { type(of: $0) == ofType } as? EntityType
+    }
 }
