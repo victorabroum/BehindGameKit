@@ -22,6 +22,7 @@ public class SoundController {
         } else {        
             scene.addChild(soundFXNode)
         }
+        soundFXNode.run(.play())
     }
     
     public func playMusic(named musicName: String, withExtension: String = "wav") {
