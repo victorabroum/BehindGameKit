@@ -22,7 +22,6 @@ public class SoundController {
         } else {        
             scene.addChild(soundFXNode)
         }
-        soundFXNode.run(.play())
     }
     
     public func playMusic(named musicName: String, withExtension: String = "wav") {
@@ -53,6 +52,14 @@ public class SoundController {
     
     public func changeVolume(to amount: Float, fadeDuration: TimeInterval = 0) {
         backgroundMusicPlayer?.setVolume(amount, fadeDuration: fadeDuration)
+    }
+    
+    public func preloadSoundFX() {
+        soundFXNode.run(.sequence([
+            .changeVolume(to: 0, duration: 0),
+            .playSoundFileNamed("", waitForCompletion: false),
+            .changeVolume(to: 1, duration: 0),
+        ]))
     }
     
     public func playSoundFX(named: String) {
