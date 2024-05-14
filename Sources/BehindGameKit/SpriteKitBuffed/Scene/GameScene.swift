@@ -52,7 +52,7 @@ open class SKGameScene: SKScene {
         self.lastUpdateTime = currentTime
     }
     
-    #if os(ios)
+    #if os(iOS)
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let camera, let location = touches.first?.location(in: camera) else { return }
         

@@ -44,7 +44,7 @@ public class BKAnalogNode: SKNode, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    #if os(ios)
+    #if os(iOS)
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
         moveKnob(location: location)
