@@ -9,8 +9,6 @@ import Foundation
 import SpriteKit
 import Combine
 
-@available(macOS 10.15, *)
-@available(iOS 13.0, *)
 public class VirtualController: ObservableObject {
     
     private var analogNode: BKAnalogNode
@@ -53,19 +51,19 @@ public class VirtualController: ObservableObject {
         return analogNode.calculateAccumulatedFrame().size
     }
     
-    public func touchBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        analogNode.touchesBegan(touches, with: event)
+    public func touchBegan(_ touches: SetTouches, with event: UIEventAlias?) {
+        analogNode.touchesBeganAlias(touches, with: event)
     }
     
-    public func touchMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        analogNode.touchesMoved(touches, with: event)
+    public func touchMoved(_ touches: SetTouches, with event: UIEventAlias?) {
+        analogNode.touchesMovedAlias(touches, with: event)
     }
     
-    public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        analogNode.touchesEnded(touches, with: event)
+    public func touchesEnded(_ touches: SetTouches, with event: UIEventAlias?) {
+        analogNode.touchesEndedAlias(touches, with: event)
     }
     
-    public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        analogNode.touchesCancelled(touches, with: event)
+    public func touchesCancelled(_ touches: SetTouches, with event: UIEventAlias?) {
+        analogNode.touchesCancelledAlias(touches, with: event)
     }
 }

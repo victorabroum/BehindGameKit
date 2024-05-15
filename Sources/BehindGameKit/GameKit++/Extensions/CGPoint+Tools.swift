@@ -16,6 +16,11 @@ public extension CGPoint {
         return CGPoint(x: left.x + right.x, y: left.y + right.y)
     }
     
+    static func += (left: inout CGPoint, right: CGPoint) {
+        left.x += right.x
+        left.y += right.y
+    }
+    
     func normalized() -> CGPoint {
         // Calcula o valor absoluto máximo entre x e y
         let absMax = max(abs(self.x), abs(self.y))

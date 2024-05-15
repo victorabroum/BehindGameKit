@@ -8,8 +8,6 @@
 import Foundation
 import SpriteKit
 
-@available(macOS 10.15, *)
-@available(iOS 13.0, *)
 public class BKAnalogNode: SKNode, ObservableObject {
     
     var background: SKShapeNode
@@ -44,29 +42,29 @@ public class BKAnalogNode: SKNode, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    #if os(iOS)
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let location = touches.first?.location(in: self) else { return }
+    public func touchesBeganAlias(_ touches: SetTouches, with event: UIEventAlias?) {
+        
+        let location = getLocation(touches: touches, from: event)
+        
         moveKnob(location: location)
         self.removeAction(forKey: "setEnable")
         self.run(.fadeAlpha(to: 1, duration: 0))
     }
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let location = touches.first?.location(in: self) else { return }
+    public func touchesMovedAlias(_ touches: SetTouches, with event: UIEventAlias?) {
+        let location = getLocation(touches: touches, from: event)
         moveKnob(location: location)
     }
     
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public func touchesEndedAlias(_ touches: SetTouches, with event: UIEventAlias?) {
         moveKnob(location: .zero)
         setVisible(value: false, withDuration: 0.6)
     }
     
-    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public func touchesCancelledAlias(_ touches: SetTouches, with event: UIEventAlias?) {
         moveKnob(location: .zero)
         setVisible(value: false, withDuration: 0.6)
     }
-    #endif
     
     private func moveKnob(location: CGPoint) {
         
@@ -92,4 +90,45 @@ public class BKAnalogNode: SKNode, ObservableObject {
         self.removeAllActions()
         self.run(.fadeAlpha(to: value ? 1 : 0, duration: duration), withKey: "setEnable")
     }
+    
+    private func getLocation(touches: SetTouches, from event: UIEventAlias?) -> CGPoint {
+        #if os(iOS)
+        guard let location = touches.first?.location(in: self) else { return .zero }
+        #elseif os(macOS)
+        guard let location = event?.location(in: self) else { return .zero }
+        #endif
+        
+        return location
+    }
+}
+
+extension BKAnalogNode {
+    
+    #if os(macOS)
+    public override func touchesBegan(with event: NSEvent) {
+        self.touchesBeganAlias(.init(), with: event)
+    }
+    public override func touchesEnded(with event: NSEvent) {
+        self.touchesEndedAlias(.init(), with: event)
+    }
+    public override func touchesMoved(with event: NSEvent) {
+        self.touchesMovedAlias(.init(), with: event)
+    }
+    public override func touchesCancelled(with event: NSEvent) {
+        self.touchesCancelledAlias(.init(), with: event)
+    }
+    #elseif os(iOS)
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchesBeganAlias(touches, with: event)
+    }
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchesMovedAlias(touches, with: event)
+    }
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchesEndedAlias(touches, with: event)
+    }
+    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchesCancelledAlias(touches, with: event)
+    }
+    #endif
 }

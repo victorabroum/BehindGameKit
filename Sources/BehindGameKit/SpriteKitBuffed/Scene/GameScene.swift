@@ -9,8 +9,6 @@ import Foundation
 import SpriteKit
 import Combine
 
-@available(macOS 10.15, *)
-@available(iOS 13.0, *)
 open class SKGameScene: SKScene {
     
     public var lastUpdateTime : TimeInterval = 0

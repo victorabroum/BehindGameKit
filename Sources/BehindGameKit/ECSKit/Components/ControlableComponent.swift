@@ -10,8 +10,6 @@ import GameplayKit
 import SpriteKit
 import Combine
 
-@available(macOS 10.15, *)
-@available(iOS 13.0, *)
 public class ControlableComponent: GKComponent {
     
     var delegate: ControlableDelegate
@@ -42,5 +40,4 @@ public class ControlableComponent: GKComponent {
             self?.delegate.handleMovement(direction: direction)
         }))
     }
-    
 }
