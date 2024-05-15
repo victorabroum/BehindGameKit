@@ -12,4 +12,8 @@ public extension GKEntity {
     func removeNodes() {
         self.component(ofType: GKSKNodeComponent.self)?.node.removeFromParent()
     }
+    
+    func removeFromScene() {
+        SKEntityManager.shared.remove(self)
+    }
 }
