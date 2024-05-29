@@ -28,4 +28,22 @@ public extension SKAction {
         
         return SKAction.sequence(actionsArray)
     }
+    
+    static func bounce(withHeight height: CGFloat, duration: TimeInterval) -> SKAction {
+        // Dividir a duração para o movimento de subida e descida
+        let halfDuration = duration / 2.0
+        
+        // Criar a ação de subir
+        let moveUp = SKAction.moveBy(x: 0, y: height, duration: halfDuration)
+        moveUp.timingMode = .easeOut
+        
+        // Criar a ação de descer
+        let moveDown = SKAction.moveBy(x: 0, y: -height, duration: halfDuration)
+        moveDown.timingMode = .easeIn
+        
+        // Combinar as ações de subir e descer em uma sequência
+        let bounce = SKAction.sequence([moveUp, moveDown])
+        
+        return bounce
+    }
 }
