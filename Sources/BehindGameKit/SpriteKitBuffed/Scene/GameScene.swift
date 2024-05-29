@@ -15,6 +15,7 @@ open class SKGameScene: SKScene {
     public var virtualController: VirtualController?
     public var inputHandler = InputHandler()
     public var subscriptions = Set<AnyCancellable>()
+    public var isCameraShaking: Bool = false
     
     open override func sceneDidLoad() {
         self.lastUpdateTime = 0
@@ -24,7 +25,9 @@ open class SKGameScene: SKScene {
         let camera = SKCameraNode()
         addChild(camera)
         self.camera = camera
-        
+    }
+    
+    open func setupVirtualController() {
         virtualController = .init(scene: self, analogRadius: 25)
         virtualController?.setAnalogVisible(value: false)
     }

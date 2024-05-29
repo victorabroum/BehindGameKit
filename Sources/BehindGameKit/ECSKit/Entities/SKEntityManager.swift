@@ -31,6 +31,8 @@ public class SKEntityManager {
     private init() { }
     
     public func start(inScene scene: SKScene) {
+        entities = Set<GKEntity>()
+        toRemove = Set<GKEntity>()
         self.scene = scene
     }
     
