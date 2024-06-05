@@ -37,7 +37,7 @@ public class TileSheetCropper {
             }
             
             return sprites
-#elseif os(iOS)
+#elseif os(iOS) || os(tvOS)
             
             guard let image = UIImage(named: imageNamed) else { return sprites }
             

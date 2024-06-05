@@ -8,7 +8,7 @@ public extension SKSpriteNode {
         self.texture?.filteringMode = filteringMode
     }
     
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     public convenience init(image: UIImage, filteringMode: SKTextureFilteringMode) {
         self.init(texture: .init(image: image))
         self.texture?.filteringMode = filteringMode
@@ -19,4 +19,13 @@ public extension SKSpriteNode {
         self.texture?.filteringMode = filteringMode
     }
     #endif
+    
+    public func addShadow() {
+        let shadow = SKShapeNode(circleOfRadius: self.size.width/3)
+        shadow.fillColor = .black
+        shadow.strokeColor = .clear
+        shadow.alpha = 0.3
+        shadow.zPosition -= 2
+        addChild(shadow)
+    }
 }

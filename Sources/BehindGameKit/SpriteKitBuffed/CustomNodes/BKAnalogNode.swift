@@ -92,7 +92,7 @@ public class BKAnalogNode: SKNode, ObservableObject {
     }
     
     private func getLocation(touches: SetTouches, from event: UIEventAlias?) -> CGPoint {
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         guard let location = touches.first?.location(in: self) else { return .zero }
         #elseif os(macOS)
         guard let location = event?.location(in: self) else { return .zero }

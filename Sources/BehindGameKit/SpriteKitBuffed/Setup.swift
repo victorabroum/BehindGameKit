@@ -1,5 +1,5 @@
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 public typealias SetTouches = Set<UITouch>
 public typealias UIEventAlias = UIEvent

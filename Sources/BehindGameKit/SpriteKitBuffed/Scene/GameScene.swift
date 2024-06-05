@@ -17,6 +17,14 @@ open class SKGameScene: SKScene {
     public var subscriptions = Set<AnyCancellable>()
     public var isCameraShaking: Bool = false
     
+    open override var isPaused: Bool {
+        didSet {
+            if isPaused {
+                lastUpdateTime = 0
+            }
+        }
+    }
+    
     open override func sceneDidLoad() {
         self.lastUpdateTime = 0
         SKEntityManager.shared.start(inScene: self)

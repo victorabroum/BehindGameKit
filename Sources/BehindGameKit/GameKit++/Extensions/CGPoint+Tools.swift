@@ -30,6 +30,22 @@ public extension CGPoint {
         left.y *= right.y
     }
     
+    static func / (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x / right.x, y: left.y / right.y)
+    }
+    
+    static func /= (left: inout CGPoint, right: CGPoint) {
+        left = left / right
+    }
+    
+    static func / (left: CGPoint, scalar: CGFloat) -> CGPoint {
+        return CGPoint(x: left.x / scalar, y: left.y / scalar)
+    }
+    
+    static func /= (size: inout CGPoint, scalar: CGFloat) {
+        size = size / scalar
+    }
+    
     func normalized() -> CGPoint {
         // Calcula o valor absoluto máximo entre x e y
         let absMax = max(abs(self.x), abs(self.y))
@@ -53,6 +69,13 @@ public extension CGPoint {
         return .init(
             x: .random(in: range),
             y: .random(in: range))
+    }
+    
+    static func randomPoint(withSafeZone safeZone: CGFloat, range: ClosedRange<CGFloat>) -> CGPoint {
+        let angle = CGFloat.random(in: 0...360).degreesToRadians
+        let x = (safeZone * cos(angle)) + .random(in: range)
+        let y = (safeZone * sin(angle)) + .random(in: range)
+        return .init(x: x, y: y)
     }
     
     func toVecto2() -> vector_float2 {
