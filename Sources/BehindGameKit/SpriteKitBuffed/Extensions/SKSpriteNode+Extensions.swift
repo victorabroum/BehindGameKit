@@ -20,10 +20,10 @@ public extension SKSpriteNode {
     }
     #endif
     
-    public func addShadow() {
-        let shadow = SKShapeNode(circleOfRadius: self.size.width/3)
-        shadow.fillColor = .black
-        shadow.strokeColor = .clear
+    public func addShadow(sizeFactor: CGFloat = 3) {
+        let shadow = SKShapeNode(circleOfRadius: self.size.width/sizeFactor)
+        shadow.fillColor = Color.black
+        shadow.strokeColor = Color.clear
         shadow.alpha = 0.3
         shadow.zPosition -= 2
         addChild(shadow)

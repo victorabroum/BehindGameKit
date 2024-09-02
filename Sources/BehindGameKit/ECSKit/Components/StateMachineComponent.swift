@@ -12,7 +12,7 @@ public class StateMachineComponent: GKComponent {
     
     public var stateMachine: GKStateMachine
     
-    public init(stateMachine: GKStateMachine) {
+    public init(_ stateMachine: GKStateMachine) {
         self.stateMachine = stateMachine
         super.init()
     }

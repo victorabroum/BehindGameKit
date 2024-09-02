@@ -16,7 +16,7 @@ open class SKGameScene: SKScene {
     public var inputHandler = InputHandler()
     public var subscriptions = Set<AnyCancellable>()
     public var isCameraShaking: Bool = false
-    
+
     open override var isPaused: Bool {
         didSet {
             if isPaused {

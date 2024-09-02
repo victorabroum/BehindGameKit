@@ -78,7 +78,7 @@ public extension CGPoint {
         return .init(x: x, y: y)
     }
     
-    func toVecto2() -> vector_float2 {
+    func toVector2() -> vector_float2 {
         return .init(Float(x), Float(y))
     }
     
@@ -86,5 +86,11 @@ public extension CGPoint {
         let deltaX = point.x - self.x
         let deltaY = point.y - self.y
         return atan2(deltaY, deltaX)
+    }
+    
+    func angle(to point: CGPoint) -> CGFloat {
+        let dx = point.x - self.x
+        let dy = point.y - self.y
+        return atan2(dy, dx)
     }
 }
