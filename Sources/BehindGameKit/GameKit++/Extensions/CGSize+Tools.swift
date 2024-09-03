@@ -17,6 +17,15 @@ public extension CGSize {
         left = left + right
     }
     
+    // Soma Escalar
+    static func + (size: CGSize, scalar: CGFloat) -> CGSize {
+        return CGSize(width: size.width + scalar, height: size.height + scalar)
+    }
+    
+    static func + (scalar: CGFloat, size: CGSize) -> CGSize {
+        return size + scalar
+    }
+    
     // Subtração
     static func - (left: CGSize, right: CGSize) -> CGSize {
         return CGSize(width: left.width - right.width, height: left.height - right.height)
@@ -65,4 +74,5 @@ public extension CGSize {
     static func /= (size: inout CGSize, scalar: CGFloat) {
         size = size / scalar
     }
+    
 }
