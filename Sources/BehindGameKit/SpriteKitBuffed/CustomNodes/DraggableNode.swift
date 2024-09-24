@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-
+#if os(iOS)
 public class DraggableNode: SKNode {
     
     public var isDragging: Bool = false
@@ -50,3 +50,4 @@ public class DraggableNode: SKNode {
     }
     
 }
+#endif

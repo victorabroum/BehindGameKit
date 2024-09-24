@@ -98,6 +98,12 @@ public class SKEntityManager {
         }
     }
     
+    public func addComponentSystem(_ componentSystem: GKComponentSystem<GKComponent>) {
+        if !(componentSystems.contains(componentSystem)) {
+            componentSystems.append(componentSystem)
+        }
+    }
+    
     public func update(_ deltaTime: CFTimeInterval) {
         
         // Update entities
