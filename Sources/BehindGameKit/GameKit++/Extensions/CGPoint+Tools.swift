@@ -94,3 +94,8 @@ public extension CGPoint {
         return atan2(dy, dx)
     }
 }
+
+//MARK: CGPoint defaults
+public extension CGPoint {
+    public static var centered: CGPoint { .init(x: 0.5, y: 0.5) }
+}
