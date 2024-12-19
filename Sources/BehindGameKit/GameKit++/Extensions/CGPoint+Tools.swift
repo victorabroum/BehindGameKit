@@ -1,49 +1,12 @@
 import Foundation
 import SpriteKit
 
+//MARK: Tools
 public extension CGPoint {
     func distance(to point: CGPoint) -> CGFloat {
         let dx = self.x - point.x
         let dy = self.y - point.y
         return sqrt(dx*dx + dy*dy)
-    }
-    
-    static func - (left: CGPoint, right: CGPoint) -> CGPoint {
-        return CGPoint(x: left.x - right.x, y: left.y - right.y)
-    }
-    
-    static func + (left: CGPoint, right: CGPoint) -> CGPoint {
-        return CGPoint(x: left.x + right.x, y: left.y + right.y)
-    }
-    
-    static func * (left: CGPoint, right: CGPoint) -> CGPoint {
-        return CGPoint(x: left.x * right.x, y: left.y * right.y)
-    }
-    
-    static func += (left: inout CGPoint, right: CGPoint) {
-        left.x += right.x
-        left.y += right.y
-    }
-    
-    static func *= (left: inout CGPoint, right: CGPoint) {
-        left.x *= right.x
-        left.y *= right.y
-    }
-    
-    static func / (left: CGPoint, right: CGPoint) -> CGPoint {
-        return CGPoint(x: left.x / right.x, y: left.y / right.y)
-    }
-    
-    static func /= (left: inout CGPoint, right: CGPoint) {
-        left = left / right
-    }
-    
-    static func / (left: CGPoint, scalar: CGFloat) -> CGPoint {
-        return CGPoint(x: left.x / scalar, y: left.y / scalar)
-    }
-    
-    static func /= (size: inout CGPoint, scalar: CGFloat) {
-        size = size / scalar
     }
     
     func normalized() -> CGPoint {
@@ -82,6 +45,10 @@ public extension CGPoint {
         return .init(Float(x), Float(y))
     }
     
+    func toCGVector() -> CGVector {
+        return .init(dx: x, dy: y)
+    }
+    
     func calculateAngle(to point: CGPoint) -> CGFloat {
         let deltaX = point.x - self.x
         let deltaY = point.y - self.y
@@ -97,5 +64,76 @@ public extension CGPoint {
 
 //MARK: CGPoint defaults
 public extension CGPoint {
-    public static var centered: CGPoint { .init(x: 0.5, y: 0.5) }
+    static var centered: CGPoint { .init(x: 0.5, y: 0.5) }
 }
+
+//MARK: Operations
+public extension CGPoint {
+    // MARK: - Multiplicação
+    static func * (left: CGPoint, scalar: CGFloat) -> CGPoint {
+        return CGPoint(x: left.x * scalar, y: left.y * scalar)
+    }
+    
+    static func * (scalar: CGFloat, right: CGPoint) -> CGPoint {
+        return CGPoint(x: right.x * scalar, y: right.y * scalar)
+    }
+    
+    static func * (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x * right.x, y: left.y * right.y)
+    }
+
+    static func *= (left: inout CGPoint, right: CGPoint) {
+        left.x *= right.x
+        left.y *= right.y
+    }
+    
+    // MARK: - Divisão
+    static func / (left: CGPoint, scalar: CGFloat) -> CGPoint {
+        return CGPoint(x: left.x / scalar, y: left.y / scalar)
+    }
+    
+    static func / (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x / right.x, y: left.y / right.y)
+    }
+    
+    static func /= (left: inout CGPoint, right: CGPoint) {
+        left = left / right
+    }
+    
+    
+    static func /= (size: inout CGPoint, scalar: CGFloat) {
+        size = size / scalar
+    }
+
+    // MARK: - Adição
+    static func + (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x + right.x, y: left.y + right.y)
+    }
+    
+    static func + (left: CGPoint, scalar: CGFloat) -> CGPoint {
+        return CGPoint(x: left.x + scalar, y: left.y + scalar)
+    }
+    
+    static func + (scalar: CGFloat, right: CGPoint) -> CGPoint {
+        return CGPoint(x: right.x + scalar, y: right.y + scalar)
+    }
+    
+    static func += (left: inout CGPoint, right: CGPoint) {
+        left.x += right.x
+        left.y += right.y
+    }
+    
+    // MARK: - Subtração
+    static func - (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x - right.x, y: left.y - right.y)
+    }
+    
+    static func - (left: CGPoint, scalar: CGFloat) -> CGPoint {
+        return CGPoint(x: left.x - scalar, y: left.y - scalar)
+    }
+    
+    static func - (scalar: CGFloat, right: CGPoint) -> CGPoint {
+        return CGPoint(x: scalar - right.x, y: scalar - right.y)
+    }
+}
+

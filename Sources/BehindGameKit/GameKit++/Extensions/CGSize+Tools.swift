@@ -75,4 +75,7 @@ public extension CGSize {
         size = size / scalar
     }
     
+    public static func square(size: CGFloat) -> CGSize {
+        return .init(width: size, height: size)
+    }
 }
