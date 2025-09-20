@@ -70,4 +70,46 @@ public class InputHandler: ObservableObject {
             self.directionAxis = axis
         }
     }
+    
+    // MARK: Observe Keyboard Inputs
+    
+    private var keyDownMonitor: Any?
+    private var keyUpMonitor: Any?
+    private var keysPressed: Set<UInt16> = []
+    
+    public func observeKeyboardInputs() {
+        keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] event in
+            self?.handleKey(event: event, isPressed: true)
+            return event
+        })
+        
+        keyUpMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyUp, handler: { [weak self] event in
+            self?.handleKey(event: event, isPressed: false)
+            return event
+        })
+    }
+    
+    private func handleKey(event: NSEvent, isPressed: Bool) {
+        
+        
+        if isPressed {
+            keysPressed.insert(event.keyCode)
+        } else {
+            keysPressed.remove(event.keyCode)
+        }
+        
+        var x: CGFloat = 0
+        var y: CGFloat = 0
+        
+        if keysPressed.contains(0) || keysPressed.contains(123) { x -= 1 } // A ou ←
+        if keysPressed.contains(2) || keysPressed.contains(124) { x += 1 } // D ou →
+        if keysPressed.contains(13) || keysPressed.contains(126) { y += 1 } // W ou ↑
+        if keysPressed.contains(1) || keysPressed.contains(125) { y -= 1 } // S ou ↓
+        
+        directionAxis = CGPoint(x: x, y: y)
+        
+        // Botões
+        buttonAPressed = keysPressed.contains(49) // Space
+        buttonBPressed = keysPressed.contains(36) // Return
+    }
 }

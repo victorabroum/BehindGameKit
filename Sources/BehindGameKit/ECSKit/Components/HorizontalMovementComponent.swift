@@ -52,7 +52,7 @@ public class HorizontalMovementComponent: GKComponent {
         
         node?.position += .init(x: clampVelocity.x, y: 0)
         
-        node?.xScale = direction.x > 0 ? 0.5 : -0.5
+        node?.xScale = direction.x > 0 ? 1 : 1
     }
     
     public func change(direction: CGPoint) {
