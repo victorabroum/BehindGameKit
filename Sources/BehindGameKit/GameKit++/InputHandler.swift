@@ -80,12 +80,12 @@ public class InputHandler: ObservableObject {
     public func observeKeyboardInputs() {
         keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] event in
             self?.handleKey(event: event, isPressed: true)
-            return event
+            return nil
         })
         
         keyUpMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyUp, handler: { [weak self] event in
             self?.handleKey(event: event, isPressed: false)
-            return event
+            return nil
         })
     }
     
