@@ -35,6 +35,12 @@ public class ControlableComponent: GKComponent {
             }
         }))
         
+        subscriptions.insert(inputHandler.$buttonBPressed.sink(receiveValue: { [weak self] isPressed in
+            if isPressed {
+                self?.delegate.handleButtonBPressed()
+            }
+        }))
+        
         guard let virtualController else { return }
         subscriptions.insert(virtualController.createAnalogObserver(delegate: { [weak self] direction in
             self?.delegate.handleMovement(direction: direction)

@@ -10,4 +10,5 @@ import Foundation
 public protocol ControlableDelegate {
     func handleMovement(direction: CGPoint)
     func handleButtonAPressed()
+    func handleButtonBPressed()
 }

@@ -110,6 +110,6 @@ public class InputHandler: ObservableObject {
         
         // Botões
         buttonAPressed = keysPressed.contains(49) // Space
-        buttonBPressed = keysPressed.contains(36) // Return
+        buttonBPressed = keysPressed.contains(6) // Z Keyboard
     }
 }
