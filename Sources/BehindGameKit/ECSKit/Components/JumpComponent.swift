@@ -51,7 +51,7 @@ public class JumpComponent: GKComponent {
         guard canDoubleJump else { return }
         canDoubleJump = false
         
-        let jumpImpulse = CGVector(dx: 0, dy: jumpForce * 0.7)
+        let jumpImpulse = CGVector(dx: 0, dy: jumpForce * 0.85)
         physicsComp?.physicsBody.applyImpulse(jumpImpulse)
     }
     
@@ -87,7 +87,7 @@ public class JumpComponent: GKComponent {
         path.addLine(to: rayDistance)
         let debugNode = SKShapeNode(path: path)
         debugNode.strokeColor = check ? .green : .red
-        debugNode.lineWidth = 5
+        debugNode.lineWidth = node.nodeSize.width / 10
         node.scene?.addChild(debugNode)
         debugNode.run(.sequence([
             .wait(forDuration: 0.3),
