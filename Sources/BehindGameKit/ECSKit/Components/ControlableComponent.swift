@@ -12,7 +12,7 @@ import Combine
 
 public class ControlableComponent: GKComponent {
     
-    var delegate: ControlableDelegate
+    public var delegate: ControlableDelegate?
     private var subscriptions = Set<AnyCancellable>()
     
     public init(delegate: ControlableDelegate) {
@@ -26,24 +26,24 @@ public class ControlableComponent: GKComponent {
     
     public func setupController(inputHandler: InputHandler, virtualController: VirtualController?) {
         subscriptions.insert(inputHandler.$directionAxis.sink(receiveValue: { [weak self] direction in
-            self?.delegate.handleMovement(direction: direction)
+            self?.delegate?.handleMovement(direction: direction)
         }))
         
         subscriptions.insert(inputHandler.$buttonAPressed.sink(receiveValue: { [weak self] isPressed in
             if isPressed {
-                self?.delegate.handleButtonAPressed()
+                self?.delegate?.handleButtonAPressed()
             }
         }))
         
         subscriptions.insert(inputHandler.$buttonBPressed.sink(receiveValue: { [weak self] isPressed in
             if isPressed {
-                self?.delegate.handleButtonBPressed()
+                self?.delegate?.handleButtonBPressed()
             }
         }))
         
         guard let virtualController else { return }
         subscriptions.insert(virtualController.createAnalogObserver(delegate: { [weak self] direction in
-            self?.delegate.handleMovement(direction: direction)
+            self?.delegate?.handleMovement(direction: direction)
         }))
     }
 }

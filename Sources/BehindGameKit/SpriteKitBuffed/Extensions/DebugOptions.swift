@@ -8,6 +8,7 @@
 import SpriteKit
 import SwiftUI
 
+@available(iOS 14.0, *)
 @available(macOS 11.0, *)
 extension SpriteView.DebugOptions {
     public static var debugOptions: SpriteView.DebugOptions {

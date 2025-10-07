@@ -71,6 +71,7 @@ public class InputHandler: ObservableObject {
         }
     }
     
+#if os(macOS)
     // MARK: Observe Keyboard Inputs
     
     private var keyDownMonitor: Any?
@@ -112,4 +113,6 @@ public class InputHandler: ObservableObject {
         buttonAPressed = keysPressed.contains(49) // Space
         buttonBPressed = keysPressed.contains(6) // Z Keyboard
     }
+    #endif
+    
 }

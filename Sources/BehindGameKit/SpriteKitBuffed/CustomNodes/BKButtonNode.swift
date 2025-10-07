@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-public class BKButtonNode: SKNode {
+open class BKButtonNode: SKNode {
     
     public var buttonBackground: SKSpriteNode?
     public var buttonLabel: SKLabelNode?
@@ -57,7 +57,7 @@ public class BKButtonNode: SKNode {
         self.setupButtonNode()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         if let bg = self.childNode(withName: "button bg") as? SKSpriteNode {
